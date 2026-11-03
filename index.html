@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио — Худов Евгений Александрович</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --accent-color: #2b6cb0;
+            --text-color: #2d3748;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Шапка профиля --- */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Обновленный контейнер для фото */
+        .avatar-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 20%;
+            overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background-color: #cbd5e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-img {
+            width: 99%;
+            height: 99%;
+            object-fit: cover;
+            display: block;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+        }
+
+        .contact-bar {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-bar a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            transition: background 0.3s;
+        }
+
+        .contact-bar a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* --- Навигация --- */
+        nav {
+            background: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 18px 25px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s, border-bottom 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        /* --- Секции --- */
+        section {
+            padding: 60px 0;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--card-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- Карточки --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            margin-bottom: 10px;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: '•';
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* --- Таблица успеваемости --- */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: #edf2f7;
+        }
+
+        .grade-excellent { color: #38a169; font-weight: bold; }
+        .grade-good { color: #dd6b20; font-weight: bold; }
+        .grade-pass { color: #3182ce; font-weight: bold; }
+
+        /* --- Награды --- */
+        .award-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .award-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .award-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .award-info h4 {
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .award-info .date {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .award-info .source {
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+
+        /* Стили для картинок грамот */
+        .award-image-wrapper {
+            margin-top: auto; /* Прижимает картинку к низу карточки */
+            text-align: center;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px dashed #cbd5e0;
+        }
+
+        .award-img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain; /* Чтобы грамота влезла целиком без обрезки */
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .award-img:hover {
+            transform: scale(1.03);
+        }
+
+        /* --- Публикации --- */
+        .pub-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pub-list li {
+            background: var(--card-bg);
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--accent-color);
+            transition: background 0.3s;
+        }
+
+        .pub-list li:hover {
+            background: #f0f4f8;
+        }
+
+        .pub-authors {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* --- Подвал --- */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* --- Адаптивность --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.6rem; }
+            nav ul li a { padding: 12px 15px; font-size: 0.9rem; }
+            .section-title { font-size: 1.5rem; }
+            .profile-header { gap: 15px; }
+            .avatar-container { width: 130px; height: 130px; }
+            th, td { padding: 10px 12px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <div class="container profile-header">
+            <!-- Вставлено ваше фото -->
+            <div class="avatar-container">
+                <img src="Photo.jpg" alt="Худов Евгений Александрович" class="avatar-img">
+            </div>
+            <div>
+                <h1>Худов Евгений Александрович</h1>
+                <p>Магистрант 2 курса, группа 6<br>Математико-технологический факультет<br>Направление: 44.04.01 Педагогическое образование<br>Профиль: Информационные технологии в профессиональной деятельности</p>
+            </div>
+            <div class="contact-bar">
+                <a href="mailto:zhenyakhudov@mail.ru">✉ zhenyakhudov@mail.ru</a>
+                <a href="#">📍 г. Иваново</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#education">Образование</a></li>
+                <li><a href="#experience">Опыт</a></li>
+                <li><a href="#achievements">Награды</a></li>
+                <li><a href="#publications">Публикации</a></li>
+                <li><a href="#grades">Успеваемость</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Обо мне -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Обо мне</h2>
+            <div class="card">
+                <p>Дата рождения: <strong>30 марта 2004 года</strong>.</p>
+                <p>В настоящее время обучаюсь в Шуйском филиале Ивановского государственного университета (ИвГУ) с 2025 года. Являюсь студентом магистратуры 2 курса математико-технологического факультета по очной форме обучения.</p>
+                <p>Совмещаю учебу с работой: <strong>педагог в школе робототехники и программирования</strong>.</p>
+                <p>За время учебы зарекомендовал себя добросовестным и дисциплинированным студентом. С учебным планом справляюсь, задолженностей не имею. Принимаю активное участие в общественной и культурно-массовой жизни университета: научных конференциях, федеральных форумах, конкурсах и олимпиадах. Помогаю в организации таких мероприятий, как «День открытых дверей университета», фестиваль «Студенческая весна» и «Посвящение первокурсников».</p>
+                <p>Систематически оказываю поддержку лицам с ограниченными возможностями здоровья. Обладаю развитыми коммуникативными навыками, эмпатией и ответственностью. Владею базовыми знаниями в области психологии.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Образование -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Образование</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Магистратура</h3>
+                    <p><strong>Учебное заведение:</strong> Шуйский филиал ИвГУ</p>
+                    <p><strong>Период:</strong> 2025 – 2027 (2 курс)</p>
+                    <p><strong>Факультет:</strong> Математико-технологический</p>
+                    <p><strong>Направление:</strong> 44.04.01 Педагогическое образование</p>
+                    <p><strong>Профиль:</strong> Информационные технологии в профессиональной деятельности</p>
+                </div>
+                <div class="card">
+                    <h3>Высшее образование (Бакалавриат)</h3>
+                    <p><strong>Учебное заведение:</strong> Ивановский государственный энергетический университет им. В.И. Ленина (ИГЭУ)</p>
+                    <p><strong>Специальность:</strong> Автоматизированные системы обработки информации и управления в энергетике</p>
+                    <p><strong>Год окончания:</strong> 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Опыт -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Опыт и деятельность</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Профессиональный опыт</h3>
+                    <ul>
+                        <li>Педагог в школе робототехники и программирования.</li>
+                        <li>Опыт организации городских мероприятий (фестиваль «Шуйское мыло» и др.).</li>
+                        <li>Волонтерская деятельность и поддержка лиц с ОВЗ.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Общественная деятельность</h3>
+                    <ul>
+                        <li>Участие в научных конференциях и федеральных форумах.</li>
+                        <li>Помощь в организации «Дня открытых дверей университета».</li>
+                        <li>Участие в фестивале «Студенческая весна».</li>
+                        <li>Организация «Посвящения первокурсников».</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Награды -->
+    <section id="achievements">
+        <div class="container">
+            <h2 class="section-title">Награды и благодарности</h2>
+            <div class="grid-3">
+                
+                <!-- Грамота 1 -->
+                <div class="award-card">
+                    <div class="award-header">
+                        <div class="award-icon">🏅</div>
+                        <div class="award-info">
+                            <h4>Благодарность за волонтерскую помощь</h4>
+                            <p class="date">2026 г.</p>
+                            <p class="source">Ивановская областная общественная организация инвалидов-опорников «Надежда».</p>
+                        </div>
+                    </div>
+                    <div class="award-image-wrapper">
+                        <img src="Photo1.jpg" alt="Благодарность от организации Надежда" class="award-img" title="Нажмите, чтобы увеличить">
+                    </div>
+                </div>
+
+                <!-- Грамота 2 -->
+                <div class="award-card">
+                    <div class="award-header">
+                        <div class="award-icon">🏅</div>
+                        <div class="award-info">
+                            <h4>Благодарность за помощь в проведении городских мероприятий</h4>
+                            <p class="date">2026 г.</p>
+                            <p class="source">Отдел культуры Администрации г.о. Шуя.</p>
+                        </div>
+                    </div>
+                    <div class="award-image-wrapper">
+                        <img src="Photo2.jpg" alt="Благодарность от Отдела культуры" class="award-img" title="Нажмите, чтобы увеличить">
+                    </div>
+                </div>
+
+                <!-- Грамота 3 -->
+                <div class="award-card">
+                    <div class="award-header">
+                        <div class="award-icon">🏅</div>
+                        <div class="award-info">
+                            <h4>Благодарность за содействие в организации фестиваля «Шуйское мыло»</h4>
+                            <p class="date">2026 г.</p>
+                            <p class="source">Директор МАУК «ШГСКК».</p>
+                        </div>
+                    </div>
+                    <div class="award-image-wrapper">
+                        <img src="Photo3.jpg" alt="Благодарность за фестиваль Шуйское мыло" class="award-img" title="Нажмите, чтобы увеличить">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Публикации -->
+    <section id="publications">
+        <div class="container">
+            <h2 class="section-title">Научные публикации</h2>
+            <ul class="pub-list">
+                <li>
+                    <span class="pub-authors">Худов Е.А., Зайцева С.А.</span>
+                    «Повышение результативности контроля и оценки учебных достижений студентов средствами цифровых технологий».
+                </li>
+                <li>
+                    <span class="pub-authors">Худов Е.А., Зайцева С.А.</span>
+                    «Автоматизация контроля и оценки учебных достижений в условиях рейтинговой системы: мнение студентов вуза».
+                </li>
+                <li>
+                    <span class="pub-authors">Худов Е.А., Зайцева С.А.</span>
+                    «Организация контроля и оценки учебных достижений студентов по дисциплине «История информатики»: оптимальность выбора контрольно-измерительных материалов».
+                </li>
+                <li>
+                    <span class="pub-authors">Худов Е.А., Зайцева С.А.</span>
+                    «Возможности технологий генеративного искусственного интеллекта для разработки тестовых заданий».
+                </li>
+                <li>
+                    <span class="pub-authors">Худов Е.А., Зайцева С.А.</span>
+                    «Сравнительный анализ цифровых платформ для организации контроля в условиях рейтинговой системы оценивания».
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Успеваемость -->
+    <section id="grades">
+        <div class="container">
+            <h2 class="section-title">Успеваемость (2025–2026 уч. год)</h2>
+            
+            <h3 style="margin-bottom: 15px; color: var(--primary-color);">1 семестр</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Дисциплина</th>
+                            <th>Оценка</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Web-проектирование и Web-дизайн в профессиональной деятельности</td><td class="grade-pass">Зачтено</td></tr>
+                        <tr><td>2</td><td>Деловой иностранный язык (английский)</td><td class="grade-excellent">Отлично</td></tr>
+                        <tr><td>3</td><td>Информационная безопасность и защита информации</td><td class="grade-pass">Зачтено</td></tr>
+                        <tr><td>4</td><td>Математические методы обработки результатов педагогического эксперимента</td><td class="grade-pass">Зачтено</td></tr>
+                        <tr><td>5</td><td>Нормативно-правовое регулирование в области образования</td><td class="grade-pass">Зачтено</td></tr>
+                        <tr><td>6</td><td>Организация проектно-исследовательской деятельности обучающихся</td><td class="grade-pass">Зачтено</td></tr>
+                        <tr><td>7</td><td>Русский язык в профессиональной сфере</td><td class="grade-pass">Зачтено</td></tr>
+                        <tr><td>8</td><td>Теория и практика информатизации образования</td><td class="grade-excellent">Отлично</td></tr>
+                        <tr><td>9</td><td>Учебная практика, научно-исследовательская работа</td><td class="grade-excellent">Отлично</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: var(--primary-color);">2 семестр</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Дисциплина</th>
+                            <th>Оценка</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Информационные технологии в профессиональной деятельности</td><td class="grade-pass">Зачтено</td></tr>
+                        <tr><td>2</td><td>Методология и методы научного исследования</td><td class="grade-excellent">Отлично</td></tr>
+                        <tr><td>3</td><td>Научно-исследовательский семинар</td><td class="grade-pass">Зачтено</td></tr>
+                        <tr><td>4</td><td>Производственная практика, научно-исследовательская работа</td><td class="grade-pass">Зачтено</td></tr>
+                        <tr><td>5</td><td>Производственная практика, педагогическая практика</td><td class="grade-good">Хорошо</td></tr>
+                        <tr><td>6</td><td>Современные проблемы науки и образования</td><td class="grade-good">Хорошо</td></tr>
+                        <tr><td>7</td><td>Теория аргументации в исследовательской деятельности</td><td class="grade-pass">Зачтено</td></tr>
+                        <tr><td>8</td><td>Цифровые технологии в управлении образовательным учреждением</td><td class="grade-excellent">Отлично</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Худов Евгений Александрович. Портфолио магистранта.</p>
+            <p style="margin-top: 5px; font-size: 0.9rem;">Ивановский государственный университет, Шуйский филиал</p>
+        </div>
+    </footer>
+
+</body>
+</html>
